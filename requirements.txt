@@ -1,0 +1,10 @@
+flask>=3.0.0
+flask-cors>=4.0.0
+nltk>=3.8.0
+scikit-learn>=1.4.0
+numpy>=1.26.0
+scipy>=1.12.0
+requests>=2.31.0
+
+sentence-transformers>=2.7.0
+
