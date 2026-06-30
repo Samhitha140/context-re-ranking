@@ -45,13 +45,13 @@ const SUGGESTIONS = [
 ];
 
 // ── Primitives ────────────────────────────────────────────────────────────────
-function ScoreBar({ value, color, width = 80 }) {
+function ScoreBar({ value, color, width = 80, showPct = true }) {
   return (
     <div className="cr-bar">
       <div className="cr-bar-track" style={{ width }}>
         <div className="cr-bar-fill" style={{ width: `${Math.round(value * 100)}%`, background: color }} />
       </div>
-      <span className="cr-bar-pct">{(value * 100).toFixed(0)}%</span>
+      {showPct && <span className="cr-bar-pct">{(value * 100).toFixed(0)}%</span>}
     </div>
   );
 }
@@ -66,7 +66,7 @@ function Delta({ delta }) {
 }
 
 // ── Result card ───────────────────────────────────────────────────────────────
-function ResultCard({ result, rank, open, onToggle }) {
+function ResultCard({ result, rank, open, onToggle, maxScore }) {
   const domain = (() => {
     try { return new URL(result.url).hostname.replace("www.", ""); }
     catch { return result.url; }
@@ -74,6 +74,9 @@ function ResultCard({ result, rank, open, onToggle }) {
   const f = result.features || {};
   const boosted = (f.domain_boost || 0) > 0;
   const top3 = rank <= 3;
+  const score = result.composite_score || 0;
+  // Bar fills relative to the top result so #1 always looks best
+  const relativeScore = maxScore > 0 ? score / maxScore : score;
 
   return (
     <div className={`cr-card ${open ? "open" : ""}`}>
@@ -99,17 +102,21 @@ function ResultCard({ result, rank, open, onToggle }) {
           </a>
           <div className="cr-card-domain">
             {domain}
-            {boosted && <span className="cr-boost-dot" title="Domain boost applied" />}
+            {boosted && <span className="cr-boost-dot" title="Domain boost applied — preferred source for this persona + intent" />}
           </div>
           <div className="cr-card-snippet">{result.snippet}</div>
-          <ScoreBar value={result.composite_score || 0} color="#6366F1" width={150} />
+          {/* Bar is relative: top result = full bar */}
+          <ScoreBar value={relativeScore} color="#6366F1" width={150} showPct={false} />
         </div>
 
         {/* Score */}
         <div className="cr-card-right">
-          <div className="cr-score-big">
-            {((result.composite_score || 0) * 100).toFixed(0)}
-            <span className="cr-score-unit">pts</span>
+          <div
+            className="cr-score-big"
+            title="Composite relevance score: weighted average of TF-IDF, semantic similarity, freshness, title match, snippet depth, keyword density, persona match, and domain boost"
+          >
+            {(score * 100).toFixed(1)}
+            <span className="cr-score-unit">/ 100</span>
           </div>
           <Delta delta={result.rank_delta || 0} />
           <span className="cr-was">was #{result.original_rank}</span>
@@ -366,6 +373,12 @@ export default function ContextRank() {
                 ))}
               </div>
 
+              {/* Score legend */}
+              <div style={{ fontSize: 11, color: "#94A3B8", marginBottom: 12, lineHeight: 1.5 }}>
+                Score = weighted cosine similarity across 8 features (TF-IDF · Semantic · Freshness · Title · Snippet · Keyword Density · Persona · Domain Boost).
+                Higher = more relevant for your persona and intent. Bar shows rank relative to the top result.
+              </div>
+
               {/* Tabs */}
               <div className="cr-tabs">
                 {[
@@ -379,17 +392,21 @@ export default function ContextRank() {
                 ))}
               </div>
 
-              {tab === "results" && (
-                <div className="cr-results">
-                  {results.map((r, i) => (
-                    <ResultCard
-                      key={i} result={r} rank={i + 1}
-                      open={openIdx === i}
-                      onToggle={() => setOpenIdx(openIdx === i ? null : i)}
-                    />
-                  ))}
-                </div>
-              )}
+              {tab === "results" && (() => {
+                const maxScore = Math.max(...results.map(r => r.composite_score || 0));
+                return (
+                  <div className="cr-results">
+                    {results.map((r, i) => (
+                      <ResultCard
+                        key={i} result={r} rank={i + 1}
+                        open={openIdx === i}
+                        onToggle={() => setOpenIdx(openIdx === i ? null : i)}
+                        maxScore={maxScore}
+                      />
+                    ))}
+                  </div>
+                );
+              })()}
 
               {tab === "weights" && meta?.weights && (
                 <WeightChart weights={meta.weights} persona={persona} />
