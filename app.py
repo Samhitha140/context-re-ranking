@@ -76,6 +76,7 @@ def search():
     moved_up   = sum(1 for r in ranked if r['rank_delta'] > 0)
     moved_down = sum(1 for r in ranked if r['rank_delta'] < 0)
     avg_score  = round(sum(r['composite_score'] for r in ranked) / max(len(ranked), 1), 4)
+    intent     = ranked[0]['intent'] if ranked else 'general'
 
     weights = PERSONA_DEFINITIONS.get(persona, {}).get('weights', {})
 
@@ -92,6 +93,7 @@ def search():
             "moved_up": moved_up,
             "moved_down": moved_down,
             "weights": weights,
+            "intent": intent,
         }
     })
 

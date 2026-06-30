@@ -21,6 +21,7 @@ const FEATURE_LABELS = {
   snippet_depth: "Snippet Depth",
   keyword_density: "Keyword Density",
   persona_match: "Persona Match",
+  domain_boost: "Domain Boost",
 };
 
 const FEATURE_COLORS = {
@@ -31,6 +32,17 @@ const FEATURE_COLORS = {
   snippet_depth: "#DC2626",
   keyword_density: "#0891B2",
   persona_match: "#92400E",
+  domain_boost: "#16A34A",
+};
+
+const INTENT_META = {
+  tool:     { label: "Tool Search",    icon: "🔧", color: "#059669", bg: "#ECFDF5" },
+  learn:    { label: "Learning",       icon: "📚", color: "#4F7FFF", bg: "#EEF2FF" },
+  fix:      { label: "Troubleshoot",   icon: "🐛", color: "#DC2626", bg: "#FEF2F2" },
+  research: { label: "Research",       icon: "🔬", color: "#7C3AED", bg: "#F5F3FF" },
+  news:     { label: "News & Updates", icon: "📰", color: "#D97706", bg: "#FFFBEB" },
+  compare:  { label: "Comparison",     icon: "⚖️", color: "#0891B2", bg: "#ECFEFF" },
+  general:  { label: "General",        icon: "🌐", color: "#6B7280", bg: "#F9FAFB" },
 };
 
 function ScoreBar({ value, color, width = 60 }) {
@@ -288,6 +300,25 @@ export default function ContextRank() {
 
         {!loading && hasSearched && results.length > 0 && (
           <>
+            {/* Intent badge */}
+            {meta?.intent && (() => {
+              const im = INTENT_META[meta.intent] || INTENT_META.general;
+              return (
+                <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
+                  <span style={{ fontSize: 12, color: "#9CA3AF" }}>Detected intent:</span>
+                  <span style={{
+                    display: "inline-flex", alignItems: "center", gap: 5,
+                    padding: "4px 10px", borderRadius: 20,
+                    background: im.bg, color: im.color,
+                    fontSize: 12, fontWeight: 600, border: `1px solid ${im.color}22`,
+                  }}>
+                    {im.icon} {im.label}
+                  </span>
+                  <span style={{ fontSize: 11, color: "#9CA3AF" }}>— domain boosts & weights adjusted accordingly</span>
+                </div>
+              );
+            })()}
+
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))", gap: 10, marginBottom: 16 }}>
               {[
                 { label: "Results",    value: meta?.total || 0,                                    icon: "📄" },
