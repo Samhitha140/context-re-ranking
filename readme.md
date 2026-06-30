@@ -10,8 +10,7 @@
 
 ### Application UI
 
-![ContextRank UI — Persona Selector and Search](<img width="1911" height="875" alt="Screenshot 2026-06-30 172703" src="https://github.com/user-attachments/assets/6b2dc738-e17e-4a63-8fb9-3fe471807df9" />
-)
+<img width="1911" height="875" alt="Screenshot 2026-06-30 172703" src="https://github.com/user-attachments/assets/f10bcf56-e0e1-4c69-b869-f61f18eecd8b" />
 
 *Two-panel layout: persona sidebar (left) + live re-ranked results with score breakdown (right)*
 
