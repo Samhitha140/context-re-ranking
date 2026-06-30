@@ -10,7 +10,8 @@
 
 ### Application UI
 
-![ContextRank UI — Persona Selector and Search]()
+![ContextRank UI — Persona Selector and Search](<img width="1911" height="875" alt="Screenshot 2026-06-30 172703" src="https://github.com/user-attachments/assets/6b2dc738-e17e-4a63-8fb9-3fe471807df9" />
+)
 
 *Two-panel layout: persona sidebar (left) + live re-ranked results with score breakdown (right)*
 
@@ -18,19 +19,15 @@
 
 ## Demo Videos
 
-### Video 1 — Full Search Re-Ranking Walkthrough
+### Video  — Full Search Re-Ranking Walkthrough
 
-https://github.com/Samhitha140/context-re-ranking/assets/demo-video-1.mp4
 
-*Demonstrates persona switching, intent detection, and how the same query returns different results for Student vs Researcher vs Developer*
 
----
+https://github.com/user-attachments/assets/4b74fa21-a8ff-44d7-9143-03cf95e531d8
 
-### Video 2 — AI Tools Query Demo
 
-https://github.com/Samhitha140/context-re-ranking/assets/demo-video-2.mp4
 
-*Shows the query-aware corpus routing — "AI tools for music generation" returns Suno/Udio, while "AI tools for picture generation" returns Midjourney/DALL-E*
+*Demonstrates persona switching, intent detection, and how the same query returns different results for Student vs Researcher*
 
 ---
 
