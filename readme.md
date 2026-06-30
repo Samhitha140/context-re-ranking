@@ -1,55 +1,82 @@
 # ContextRank — Personalised Search Re-Ranking Engine
 
-A full-stack ML pipeline that re-ranks web search results in real time based on a 7-feature scoring system and 8 user persona profiles.
+> A full-stack ML pipeline that re-ranks web search results in real time using an 8-feature scoring system, 8 user persona profiles, and query intent detection — all without training a custom model or using any paid API.
 
-**Stack:** Python · Flask · NLTK · TF-IDF · Sentence-BERT · Cosine Similarity · React · Vite
+**Stack:** Python · Flask · Sentence-BERT · TF-IDF · Cosine Similarity · React · Vite
 
 ---
 
-## Demo
+## Screenshots
 
-![ContextRank Demo](frontend/src/assets/hero.png)
+### Application UI
+
+![ContextRank UI — Persona Selector and Search](assets/demo-screenshot.png)
+
+*Two-panel layout: persona sidebar (left) + live re-ranked results with score breakdown (right)*
+
+---
+
+## Demo Videos
+
+### Video 1 — Full Search Re-Ranking Walkthrough
+
+https://github.com/Samhitha140/context-re-ranking/assets/demo-video-1.mp4
+
+*Demonstrates persona switching, intent detection, and how the same query returns different results for Student vs Researcher vs Developer*
+
+---
+
+### Video 2 — AI Tools Query Demo
+
+https://github.com/Samhitha140/context-re-ranking/assets/demo-video-2.mp4
+
+*Shows the query-aware corpus routing — "AI tools for music generation" returns Suno/Udio, while "AI tools for picture generation" returns Midjourney/DALL-E*
 
 ---
 
 ## How It Works
 
 ```
-┌──────────────────────────────────────────────────────────┐
-│                    React Frontend                         │
-│   Query Input → Persona Selector → Results + Score Cards  │
-└──────────────────────┬───────────────────────────────────┘
-                       │ POST /api/search
-┌──────────────────────▼───────────────────────────────────┐
-│                  Flask Backend (app.py)                   │
-│                                                           │
-│  fetcher.py              ranker.py                        │
-│  ┌───────────┐    ┌──────────────────────────────────┐   │
-│  │ DuckDuckGo│    │      7-Feature ML Pipeline        │   │
-│  │  scraper  │───▶│  F1: TF-IDF       (lexical)      │   │
-│  │ + demo    │    │  F2: Sentence-BERT (semantic)     │   │
-│  │  corpus   │    │  F3: Freshness    (temporal)      │   │
-│  └───────────┘    │  F4: Title Match  (lexical)       │   │
-│                   │  F5: Snippet Depth (content)      │   │
-│                   │  F6: Keyword Density (lexical)    │   │
-│                   │  F7: Persona Match (semantic)     │   │
-│                   └──────────────┬───────────────────┘   │
-│                                  │ Weighted composite score│
-│                                  ▼                        │
-│                       Re-ranked results JSON               │
-└──────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────┐
+│                      React Frontend                           │
+│   Persona Selector → Query Input → Intent Badge → Score Cards │
+└──────────────────────────┬───────────────────────────────────┘
+                           │  POST /api/search
+┌──────────────────────────▼───────────────────────────────────┐
+│                    Flask Backend  (app.py)                    │
+│                                                              │
+│  fetcher.py                  ranker.py                       │
+│  ┌─────────────────┐   ┌────────────────────────────────┐   │
+│  │  DuckDuckGo     │   │     8-Feature ML Pipeline       │   │
+│  │  HTML scraper   │──▶│  F1: TF-IDF        (lexical)   │   │
+│  │                 │   │  F2: Sentence-BERT  (semantic)  │   │
+│  │  + 7 query-aware│   │  F3: Freshness      (temporal)  │   │
+│  │  demo corpora   │   │  F4: Title Match    (lexical)   │   │
+│  └─────────────────┘   │  F5: Snippet Depth  (content)  │   │
+│                        │  F6: Keyword Density (lexical)  │   │
+│                        │  F7: Persona Match   (semantic) │   │
+│                        │  F8: Domain Boost    (additive) │   │
+│                        └───────────────┬────────────────┘   │
+│                    Intent Detection    │                      │
+│                    (tool/learn/fix/    │  Weighted composite  │
+│                    research/news/      │  score → re-ranked   │
+│                    compare/general)    ▼  results JSON        │
+└──────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## Features
+## Key Features
 
-- **7-feature scoring pipeline** — combines lexical, semantic, temporal, and persona signals into a single composite score
-- **8 persona profiles** — each with custom feature weights and domain boost lists (Student, Researcher, Developer, Journalist, Business, Casual, Medical, Legal)
-- **Sentence-BERT embeddings** — `all-MiniLM-L6-v2` for semantic similarity and persona matching
-- **Live search** — DuckDuckGo HTML scraping (no API key required), with a demo corpus fallback
-- **Persona comparison** — `/api/compare` re-ranks the same query across all 8 personas simultaneously
-- **Feature breakdown** — every result exposes its 7 individual feature scores
+| Feature | Description |
+|---------|-------------|
+| **8-feature scoring pipeline** | Combines lexical (TF-IDF, title match, keyword density), semantic (Sentence-BERT, persona match), temporal (freshness), content (snippet depth), and domain boost signals |
+| **Query intent detection** | Detects 6 intents — tool search, learn, fix/debug, research, news, compare — and adjusts feature weights accordingly |
+| **8 persona profiles** | Student, Researcher, Developer, Journalist, Business, Casual, Medical, Legal — each with custom feature weights |
+| **Query-aware demo corpus** | 7 topic corpora (AI music, AI image, AI video, AI writing, coding, medical, research…) so demo results are always relevant to the query |
+| **Live search** | DuckDuckGo HTML scraping — no API key required |
+| **Relative score bars** | Top result = full bar; all others shown relative to it — no confusing raw percentages |
+| **Persona comparison** | `/api/compare` re-ranks the same query across all 8 personas simultaneously |
 
 ---
 
@@ -57,14 +84,16 @@ A full-stack ML pipeline that re-ranks web search results in real time based on 
 
 ```
 contex re-rank/
-├── app.py            # Flask API server
-├── ranker.py         # 7-feature re-ranking engine + 8 persona profiles
-├── fetcher.py        # DuckDuckGo scraper + demo corpus fallback
-├── requirements.txt  # Python dependencies
+├── app.py             # Flask API server
+├── ranker.py          # 8-feature re-ranking engine + 8 persona profiles + intent detection
+├── fetcher.py         # DuckDuckGo scraper + 7 query-aware demo corpora
+├── requirements.txt   # Python dependencies
+├── assets/            # Demo screenshots and videos (for README)
 └── frontend/
     ├── src/
-    │   ├── App.jsx   # Main React UI
-    │   └── App.css
+    │   ├── App.jsx    # Main React UI (two-panel layout)
+    │   ├── App.css    # Full CSS design system
+    │   └── index.css  # Reset + root styles
     ├── package.json
     └── vite.config.js
 ```
@@ -77,25 +106,28 @@ contex re-rank/
 - Python 3.10+
 - Node.js 18+
 
-### Backend
+### 1. Backend
 
 ```bash
 # Install Python dependencies
 pip install -r requirements.txt
 
-# Start Flask server (model loads on first run ~10–15s)
+# Start Flask server
+# (Sentence-BERT model downloads on first run — takes ~30s)
 python app.py
-# → http://localhost:5050
+# → Running on http://localhost:5050
 ```
 
-### Frontend
+### 2. Frontend
 
 ```bash
 cd frontend
 npm install
 npm run dev
-# → http://localhost:5173
+# → Running on http://localhost:5173
 ```
+
+Open `http://localhost:5173` in your browser. The backend must be running for live search; toggle **Demo** in the sidebar to use the built-in corpus without a network call.
 
 ---
 
@@ -103,53 +135,95 @@ npm run dev
 
 ### `POST /api/search`
 Re-rank results for a query under a chosen persona.
+
 ```json
 {
-  "query": "machine learning tutorial",
-  "persona": "Researcher",
-  "use_demo": false
+  "query": "AI tools for music generation",
+  "persona": "Student",
+  "use_demo": true
 }
 ```
-Returns top-10 re-ranked results with full 7-feature score breakdown.
+
+**Response includes:**
+- `results` — re-ranked list with `composite_score`, `rank_delta`, `features` (8 values), and `intent`
+- `meta.intent` — detected query intent
+- `meta.weights` — effective feature weights used
+- `meta.moved_up` / `moved_down` — how many results shifted position
 
 ### `GET /api/personas`
-Returns all 8 persona profiles with weights and boost domains.
+Returns all 8 persona profiles with weights and intent configurations.
 
 ### `POST /api/compare`
-Re-ranks the same query across all 8 personas, returns top-3 per persona.
+Re-ranks the same query across all 8 personas, returns top-3 per persona for side-by-side comparison.
 
 ---
 
-## 7-Feature Scoring Pipeline
+## 8-Feature Scoring Pipeline
 
 | # | Feature | Type | Description |
 |---|---------|------|-------------|
-| F1 | TF-IDF | Lexical | Bigram cosine similarity |
-| F2 | Semantic | Semantic | Sentence-BERT cosine similarity |
-| F3 | Freshness | Temporal | Year cues + recency keywords |
-| F4 | Title Match | Lexical | Query token overlap in title |
-| F5 | Snippet Depth | Content | Length + vocabulary diversity |
-| F6 | Keyword Density | Lexical | Query term density in snippet |
-| F7 | Persona Match | Semantic | Profile embedding similarity + domain boost |
+| F1 | TF-IDF Similarity | Lexical | Bigram TF-IDF cosine similarity between query and snippet |
+| F2 | Semantic Similarity | Semantic | Sentence-BERT (`all-MiniLM-L6-v2`) cosine similarity |
+| F3 | Freshness | Temporal | Recency signals — year mentions, "latest", "2025" etc. |
+| F4 | Title Match | Lexical | Query token overlap in result title |
+| F5 | Snippet Depth | Content | Snippet length + vocabulary diversity (type-token ratio) |
+| F6 | Keyword Density | Lexical | Query term density within snippet |
+| F7 | Persona Match | Semantic | SBERT cosine between persona profile text and snippet |
+| F8 | Domain Boost | Additive | +0.10 flat bonus for results from persona-preferred domains |
+
+Composite score = weighted sum of F1–F7 + additive F8.
+Weights are normalised to sum to 1 and shift per detected intent.
 
 ---
 
 ## 8 Persona Profiles
 
-| Persona | Dominant Signal | Boost Domains |
-|---------|----------------|---------------|
-| Student | Semantic (0.35) | edu, coursera, wikipedia, khanacademy |
-| Researcher | Semantic (0.40) | arxiv, pubmed, ieee, acm |
-| Developer | TF-IDF (0.35) | github, stackoverflow, npmjs, pypi |
-| Journalist | Freshness (0.25) | reuters, bbc, nytimes, bloomberg |
-| Business | Balanced | hbr, forbes, mckinsey, gartner |
-| Casual | Title (0.18) | reddit, youtube, medium, quora |
-| Medical | Semantic (0.38) | nih.gov, mayoclinic, pubmed, cdc.gov |
-| Legal | Semantic (0.32) | law.cornell, justia, uscourts |
+| Persona | Icon | Focus | Top Feature Weight |
+|---------|------|-------|-------------------|
+| Student | 🎓 | Tutorials & learning | Semantic 0.35 |
+| Researcher | 🔬 | Papers & citations | Semantic 0.40 |
+| Developer | 💻 | Code & docs | TF-IDF 0.35 |
+| Journalist | 📰 | News & facts | Freshness 0.25 |
+| Business | 📊 | Strategy & markets | Balanced |
+| Casual | 🌐 | General browsing | Title Match 0.18 |
+| Medical | 🩺 | Healthcare | Semantic 0.38 |
+| Legal | ⚖️ | Laws & regulations | Semantic 0.32 |
+
+---
+
+## Query Intent Detection
+
+The engine detects intent from the query and adjusts feature weights before scoring:
+
+| Intent | Trigger Example | Weight Adjustment |
+|--------|----------------|-------------------|
+| **tool** | "best AI tools for…" | Boosts TF-IDF + title match |
+| **learn** | "how to learn Python" | Boosts semantic + snippet depth |
+| **fix** | "Python import error fix" | Boosts TF-IDF + keyword density |
+| **research** | "NLP survey paper 2025" | Boosts semantic + freshness |
+| **news** | "latest GPT-4 update" | Boosts freshness |
+| **compare** | "React vs Vue 2025" | Balanced weights |
 
 ---
 
 ## Results
 
-- ~35% reduction in irrelevant top-10 results (user evaluation)
-- Persona re-ranking shifts 5–7 of 10 results from their original position
+- Re-ranking shifts 5–7 of 10 results from their original position per persona
+- Query intent detection routes to the correct topic corpus, eliminating irrelevant results (e.g. music queries no longer return image generation tools)
+- Zero cost to run — no API keys, no model training, no cloud dependencies
+
+---
+
+## Tech Stack Details
+
+| Component | Technology | Why |
+|-----------|-----------|-----|
+| Semantic scoring | `sentence-transformers` (`all-MiniLM-L6-v2`) | Fast, high-quality embeddings; runs on CPU |
+| Lexical scoring | `scikit-learn` TfidfVectorizer (bigrams) | Captures phrase-level query matches |
+| Web search | DuckDuckGo HTML scraping | No API key required |
+| Backend | Flask + flask-cors | Lightweight, easy to run locally |
+| Frontend | React + Vite | Fast HMR, minimal boilerplate |
+
+---
+
+*Built as a portfolio project demonstrating NLP re-ranking, persona-aware search personalisation, and full-stack ML integration.*
