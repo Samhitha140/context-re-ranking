@@ -25,7 +25,8 @@ HEADERS = {
 
 TOPIC_CORPORA = {
 
-    "ai_tools": [
+    # ── AI Image Generation Tools ─────────────────────────────────────────────
+    "ai_image": [
         {
             "title": "Midjourney — AI Image Generator for Artists and Designers",
             "url": "https://www.midjourney.com",
@@ -62,29 +63,235 @@ TOPIC_CORPORA = {
             "snippet": "Canva's built-in AI image generator lets you create stunning visuals directly in your designs. No design experience needed. Free to use with a Canva account. Supports text-to-image, background generation, and image editing with AI.",
         },
         {
-            "title": "Runway ML — AI Video and Image Generation for Creators",
-            "url": "https://runwayml.com",
-            "snippet": "Runway ML offers AI-powered image and video generation tools for filmmakers, artists, and content creators. Gen-2 model creates videos from text or images. Used by major studios. Free trial available with 125 credits.",
-        },
-        {
             "title": "Ideogram — Free AI Image Generator with Excellent Text Rendering",
             "url": "https://ideogram.ai",
-            "snippet": "Ideogram is a free AI image generation tool that excels at rendering accurate text within images — a weakness of most AI art tools. Perfect for posters, logos, and banners. Free tier generates 10 images/day. Updated 2025.",
+            "snippet": "Ideogram is a free AI image generation tool that excels at rendering accurate text within images. Perfect for posters, logos, and banners. Free tier generates 10 images/day. Updated 2025.",
         },
         {
             "title": "Google ImageFX — Free AI Image Generator by Google (Imagen 3)",
             "url": "https://labs.google/fx/tools/image-fx",
-            "snippet": "Google's ImageFX is powered by Imagen 3, one of the highest-quality AI image generation models available. Completely free to use with a Google account. Generates photorealistic images, illustrations, and abstract art from text prompts.",
+            "snippet": "Google's ImageFX is powered by Imagen 3, one of the highest-quality AI image generation models. Completely free with a Google account. Generates photorealistic images, illustrations, and abstract art from text prompts.",
         },
         {
             "title": "Playground AI — Free Online AI Image Generator with No Daily Limits",
             "url": "https://playground.com",
-            "snippet": "Playground AI offers a generous free tier for AI image generation with no strict daily limits. Supports multiple models including Stable Diffusion and DALL-E. Great for beginners and professionals alike. Create, remix, and edit images online.",
+            "snippet": "Playground AI offers a generous free tier for AI image generation. Supports multiple models including Stable Diffusion and DALL-E. Great for beginners and professionals. Create, remix, and edit images online.",
+        },
+    ],
+
+    # ── AI Music Generation Tools ─────────────────────────────────────────────
+    "ai_music": [
+        {
+            "title": "Suno AI — Generate Full Songs with Vocals from Text (Free)",
+            "url": "https://suno.com",
+            "snippet": "Suno AI generates complete, radio-quality songs with lyrics and vocals from a simple text prompt. Free plan includes 50 credits/day. Create music in any genre — pop, hip-hop, jazz, classical — in seconds. No musical experience needed.",
+        },
+        {
+            "title": "Udio — Free AI Music Generator for Any Genre",
+            "url": "https://www.udio.com",
+            "snippet": "Udio is an AI music generation platform that creates high-quality songs from text descriptions. Supports all genres including electronic, folk, R&B, and orchestral. Free tier available. Lets you extend, remix, and download your AI-generated tracks.",
+        },
+        {
+            "title": "Mubert — AI-Generated Royalty-Free Music for Content Creators",
+            "url": "https://mubert.com",
+            "snippet": "Mubert generates royalty-free AI music for videos, podcasts, streams, and apps. Set mood, tempo, and duration to get custom background music instantly. Free plan available. Integrations with Premiere Pro and other video editors.",
+        },
+        {
+            "title": "AIVA — AI Music Composer for Film, Games and Ads",
+            "url": "https://www.aiva.ai",
+            "snippet": "AIVA is an AI music composition tool used by professional composers, game studios, and advertisers. Generate orchestral, cinematic, and electronic music. Free plan includes 3 downloads/month. Full commercial licensing available.",
+        },
+        {
+            "title": "Soundraw — AI Music Generator with Full Customisation",
+            "url": "https://soundraw.io",
+            "snippet": "Soundraw lets you generate and customise royalty-free AI music. Adjust tempo, instruments, mood, and length. Perfect for YouTube videos, podcasts, and social media. Free to generate; subscription needed to download. No copyright claims.",
+        },
+        {
+            "title": "Beatoven.ai — AI Music Generator Tailored to Your Video Mood",
+            "url": "https://www.beatoven.ai",
+            "snippet": "Beatoven.ai creates custom background music that adapts to the mood and pacing of your video or podcast. AI analyses your content and generates matching tracks. Free tier available. Used by content creators and video editors worldwide.",
+        },
+        {
+            "title": "Boomy — Create and Release AI Music to Streaming Platforms",
+            "url": "https://boomy.com",
+            "snippet": "Boomy lets anyone create original AI music tracks in seconds and publish them to Spotify, Apple Music, and TikTok. Over 18 million songs created. Free to use. Earn streaming royalties from your AI-generated music.",
+        },
+        {
+            "title": "Loudly — AI Music Generator for Social Media and Creators",
+            "url": "https://www.loudly.com",
+            "snippet": "Loudly offers AI music generation with 170,000+ stem loops and smart recommendations. Create custom music for Instagram Reels, TikTok, and YouTube. Royalty-free tracks with a free plan available. Used by 2 million creators.",
+        },
+        {
+            "title": "Stable Audio by Stability AI — High-Quality AI Audio Generation",
+            "url": "https://stability.ai/stable-audio",
+            "snippet": "Stable Audio is Stability AI's music and sound effect generation model. Generate high-fidelity audio up to 3 minutes from text prompts. Free tier available. Outputs full stereo 44.1kHz audio. Ideal for musicians, game developers, and filmmakers.",
+        },
+        {
+            "title": "Google MusicFX — Free AI Music Generator by Google DeepMind",
+            "url": "https://labs.google/fx/tools/music-fx",
+            "snippet": "Google MusicFX uses DeepMind's music generation AI to create background music from text descriptions. Completely free with a Google account. Generate loops and full tracks across genres. Updated 2025 with improved audio quality.",
+        },
+    ],
+
+    # ── AI Writing & Productivity Tools ───────────────────────────────────────
+    "ai_writing": [
+        {
+            "title": "ChatGPT by OpenAI — AI Writing Assistant and Chatbot (Free)",
+            "url": "https://chat.openai.com",
+            "snippet": "ChatGPT is OpenAI's conversational AI used for writing, coding, research, and problem-solving. Free plan available with GPT-4o mini. Used by 100 million+ people. Write essays, emails, code, summaries, and creative content instantly.",
+        },
+        {
+            "title": "Claude by Anthropic — AI Assistant for Writing and Analysis",
+            "url": "https://claude.ai",
+            "snippet": "Claude is Anthropic's AI assistant known for nuanced writing, long document analysis, and thoughtful responses. Free tier available. Excels at creative writing, coding, summarisation, and research tasks. Constitutional AI for safer outputs.",
+        },
+        {
+            "title": "Gemini by Google — AI Writing and Multimodal Assistant",
+            "url": "https://gemini.google.com",
+            "snippet": "Google Gemini is a multimodal AI assistant for writing, image analysis, coding, and research. Free with Google account. Integrated into Google Docs, Gmail, and Workspace. Updated 2025 with Gemini 1.5 Pro for 1M token context.",
+        },
+        {
+            "title": "Jasper AI — AI Copywriting Tool for Marketing Teams",
+            "url": "https://www.jasper.ai",
+            "snippet": "Jasper AI generates marketing copy, blog posts, social media content, and ad text. Trained on best-performing marketing content. Used by 100,000+ businesses. Templates for every content type. Free trial available.",
+        },
+        {
+            "title": "Copy.ai — AI Writer for Sales Copy and Marketing Content",
+            "url": "https://www.copy.ai",
+            "snippet": "Copy.ai helps marketers and entrepreneurs write high-converting copy for emails, ads, social posts, and landing pages. Free plan includes 2,000 words/month. 90+ copywriting templates. Used by 10 million users worldwide.",
+        },
+        {
+            "title": "Grammarly — AI Writing Assistant for Grammar and Clarity",
+            "url": "https://www.grammarly.com",
+            "snippet": "Grammarly uses AI to improve your writing with grammar corrections, style suggestions, and tone detection. Free browser extension and desktop app. Works across email, Google Docs, social media, and more. Premium plan with GrammarlyGO.",
+        },
+        {
+            "title": "Notion AI — AI Writing and Productivity Inside Your Workspace",
+            "url": "https://www.notion.so/product/ai",
+            "snippet": "Notion AI integrates writing assistance directly into your Notion workspace. Summarise notes, draft documents, translate text, and extract action items. Available as an add-on to any Notion plan.",
+        },
+        {
+            "title": "Perplexity AI — AI Search Engine with Cited Answers",
+            "url": "https://www.perplexity.ai",
+            "snippet": "Perplexity is an AI-powered search engine that answers questions with cited sources. Great for research, fact-checking, and getting up-to-date information. Free to use. Pro plan adds GPT-4 and Claude access.",
+        },
+        {
+            "title": "Writesonic — AI Content Writer for SEO and Marketing",
+            "url": "https://writesonic.com",
+            "snippet": "Writesonic generates SEO-optimised blog posts, product descriptions, and ad copy. Includes Chatsonic (ChatGPT alternative with internet access). Free plan with 10,000 words/month. Used by 1 million+ marketers.",
         },
         {
             "title": "Futurepedia — The Largest Directory of Free AI Tools 2025",
             "url": "https://www.futurepedia.io",
-            "snippet": "Futurepedia is the largest AI tools directory with 5000+ AI tools across all categories. Find the best free AI image generators, writing assistants, video tools, and more. Updated daily with new tools. Filter by price, category, and use case.",
+            "snippet": "Futurepedia is the largest AI tools directory with 5000+ AI tools across all categories. Find the best free AI writing assistants, image generators, music tools, and more. Updated daily. Filter by price, category, and use case.",
+        },
+    ],
+
+    # ── AI Video Generation Tools ─────────────────────────────────────────────
+    "ai_video": [
+        {
+            "title": "Runway ML — AI Video Generation for Filmmakers and Creators",
+            "url": "https://runwayml.com",
+            "snippet": "Runway ML offers Gen-2 and Gen-3 AI video generation from text or image prompts. Used by major film studios and content creators. Free trial with 125 credits. Features include text-to-video, image-to-video, and AI video editing.",
+        },
+        {
+            "title": "Sora by OpenAI — Text-to-Video AI Generation Model",
+            "url": "https://openai.com/sora",
+            "snippet": "Sora is OpenAI's text-to-video model that generates realistic, high-quality videos up to 1 minute from text prompts. Available to ChatGPT Plus and Pro subscribers. Creates cinematic scenes, animations, and realistic footage.",
+        },
+        {
+            "title": "Pika Labs — AI Video Generator for Short Clips and Animations",
+            "url": "https://pika.art",
+            "snippet": "Pika is an AI video generation tool for creating and editing videos from text or images. Free plan available. Generate 3-second clips, animate images, and add motion to still photos. Popular for social media content creation.",
+        },
+        {
+            "title": "Kling AI — High-Quality AI Video Generation by Kuaishou",
+            "url": "https://klingai.com",
+            "snippet": "Kling AI generates realistic AI videos up to 2 minutes long from text or image prompts. One of the highest-quality video generation models available. Free credits for new users. Strong physics simulation and character motion.",
+        },
+        {
+            "title": "Synthesia — AI Avatar Video Generator for Business",
+            "url": "https://www.synthesia.io",
+            "snippet": "Synthesia creates professional AI avatar videos from text scripts in 120+ languages. Used by 50,000+ companies for training, marketing, and explainer videos. No camera or filming needed. Free demo video available.",
+        },
+        {
+            "title": "InVideo AI — AI Video Creator for Social Media and Marketing",
+            "url": "https://invideo.io",
+            "snippet": "InVideo AI converts text scripts and prompts into fully edited videos with stock footage, voiceover, and music. Free plan available. Create YouTube videos, Instagram Reels, and ads without video editing skills.",
+        },
+        {
+            "title": "HeyGen — AI Video Generator with Realistic Avatars",
+            "url": "https://www.heygen.com",
+            "snippet": "HeyGen creates AI-generated videos with photorealistic digital avatars. Translate and dub videos in 40+ languages with lip sync. Used for corporate communications, e-learning, and marketing. Free plan with 1 video/month.",
+        },
+        {
+            "title": "Luma Dream Machine — AI Video Generation from Text and Images",
+            "url": "https://lumalabs.ai/dream-machine",
+            "snippet": "Luma's Dream Machine generates smooth, high-quality AI videos from text prompts and images. Free plan includes 30 generations/month. Known for excellent physics, camera motion, and cinematic quality. Used by filmmakers and creators.",
+        },
+        {
+            "title": "Descript — AI Video and Podcast Editing with Text-Based Interface",
+            "url": "https://www.descript.com",
+            "snippet": "Descript lets you edit video and audio by editing text transcripts. AI features include filler word removal, eye contact correction, and voice cloning. Free plan available. Used by 50,000+ podcasters and video creators.",
+        },
+        {
+            "title": "CapCut AI — Free Video Editor with AI Tools for Mobile and Web",
+            "url": "https://www.capcut.com",
+            "snippet": "CapCut is a free AI-powered video editor popular on TikTok. Features auto-captions, AI background removal, text-to-video, and smart cut. Available on iOS, Android, and web. Used by 200 million+ creators worldwide.",
+        },
+    ],
+
+    # ── Generic AI tools (mixed, used as fallback) ────────────────────────────
+    "ai_tools": [
+        {
+            "title": "Futurepedia — Largest Directory of AI Tools 2025",
+            "url": "https://www.futurepedia.io",
+            "snippet": "Futurepedia is the largest AI tools directory with 5000+ tools across all categories — image, music, video, writing, coding, and more. Updated daily. Filter by price, category, and use case to find the best free AI tools.",
+        },
+        {
+            "title": "There's An AI For That — Find AI Tools for Any Task",
+            "url": "https://theresanaiforthat.com",
+            "snippet": "There's An AI For That indexes 10,000+ AI tools across every category. Search by task to find the best AI for writing, music generation, image creation, coding, video editing, and productivity. Free to browse.",
+        },
+        {
+            "title": "ChatGPT by OpenAI — The Most Popular AI Assistant (Free)",
+            "url": "https://chat.openai.com",
+            "snippet": "ChatGPT is the world's most used AI assistant for writing, coding, research, and creative tasks. Free plan available. Powers millions of applications. GPT-4o is the latest model with vision, voice, and tool use capabilities.",
+        },
+        {
+            "title": "Claude by Anthropic — AI for Writing, Analysis and Coding",
+            "url": "https://claude.ai",
+            "snippet": "Claude is Anthropic's AI assistant excellent at long-form writing, analysis, and coding. Free tier available. Known for following complex instructions and producing thoughtful, nuanced responses.",
+        },
+        {
+            "title": "Suno AI — Generate Complete Songs with AI (Free)",
+            "url": "https://suno.com",
+            "snippet": "Suno AI generates full songs with vocals, instruments, and lyrics from a text prompt. Free plan with 50 credits/day. Supports all music genres. The leading AI music generation tool in 2025.",
+        },
+        {
+            "title": "Midjourney — Best AI Image Generator for Art and Design",
+            "url": "https://www.midjourney.com",
+            "snippet": "Midjourney generates stunning AI artwork from text prompts. The go-to tool for digital artists, designers, and creative professionals. Subscription from $10/month. Produces the highest-quality AI images available.",
+        },
+        {
+            "title": "Runway ML — AI Video Generation for Creators",
+            "url": "https://runwayml.com",
+            "snippet": "Runway ML creates AI-generated videos from text or image prompts. Used by major film studios. Free trial available. Features include text-to-video, image-to-video, video editing, and AI-powered visual effects.",
+        },
+        {
+            "title": "GitHub Copilot — AI Pair Programmer for Developers",
+            "url": "https://github.com/features/copilot",
+            "snippet": "GitHub Copilot is an AI coding assistant that suggests code completions, generates functions, and writes tests. Powered by OpenAI Codex. Free for students and open-source contributors. Supports 20+ programming languages.",
+        },
+        {
+            "title": "Perplexity AI — AI Search Engine with Real-Time Web Access",
+            "url": "https://www.perplexity.ai",
+            "snippet": "Perplexity is an AI search engine that answers questions with cited sources and real-time web access. Free to use. Ideal for research, fact-checking, and exploring complex topics. Pro plan adds GPT-4 and image generation.",
+        },
+        {
+            "title": "Product Hunt — Discover New AI Tools Every Day",
+            "url": "https://www.producthunt.com",
+            "snippet": "Product Hunt surfaces the best new AI tools daily with community ratings and reviews. Browse AI tools for writing, image generation, music, video, productivity, and coding. Find alternatives and compare options.",
         },
     ],
 
@@ -472,13 +679,45 @@ TOPIC_CORPORA = {
 
 # ── Topic Detection ────────────────────────────────────────────────────────────
 TOPIC_SIGNALS = {
+    "ai_music": {
+        "words": {"music", "song", "songs", "audio", "sound", "melody", "beat", "beats",
+                  "tune", "track", "tracks", "suno", "udio", "mubert", "aiva", "soundraw",
+                  "beatoven", "boomy", "loudly", "compose", "composer", "instrumental",
+                  "lyrics", "vocalist", "genre", "hip-hop", "jazz", "pop", "electronic",
+                  "orchestral", "soundtrack", "jingle", "ringtone"},
+        "phrases": ["music generation", "ai music", "generate music", "ai song", "create music",
+                    "music maker", "ai composer", "music generator", "text to music",
+                    "ai audio", "generate songs", "music creation"],
+    },
+    "ai_image": {
+        "words": {"image", "picture", "photo", "photos", "artwork", "art", "illustration",
+                  "draw", "drawing", "visual", "midjourney", "dalle", "stable", "diffusion",
+                  "firefly", "ideogram", "flux", "photorealistic", "render", "painting"},
+        "phrases": ["image generator", "ai art", "picture generation", "ai image",
+                    "text to image", "ai drawing", "generate image", "create image",
+                    "ai picture", "image creation", "photo generator"],
+    },
+    "ai_video": {
+        "words": {"video", "clip", "clips", "film", "movie", "animation", "runway", "sora",
+                  "pika", "kling", "synthesia", "heygen", "descript", "capcut", "invideo",
+                  "luma", "footage", "reel", "reels", "tiktok", "youtube", "shorts"},
+        "phrases": ["video generation", "ai video", "text to video", "generate video",
+                    "video creator", "ai animation", "video maker", "ai film",
+                    "video editing ai", "ai reel"],
+    },
+    "ai_writing": {
+        "words": {"write", "writing", "writer", "essay", "blog", "content", "copy", "copywriting",
+                  "jasper", "copyai", "grammarly", "writesonic", "notion", "chatgpt", "claude",
+                  "gemini", "perplexity", "text", "draft", "summarise", "summarize", "proofread"},
+        "phrases": ["ai writing", "ai writer", "content generator", "ai copywriting",
+                    "write essay", "generate text", "ai content", "writing assistant",
+                    "text generator", "ai for writing"],
+    },
     "ai_tools": {
-        "words": {"ai", "tool", "tools", "generate", "generation", "image", "picture", "art",
-                  "gpt", "chatgpt", "midjourney", "dalle", "stable", "diffusion", "llm",
-                  "chatbot", "free", "generator", "creative", "design", "photo", "video",
-                  "illustration", "artwork", "draw", "drawing", "visual", "flux", "runway"},
-        "phrases": ["ai tools", "free ai", "image generator", "ai art", "picture generation",
-                    "ai image", "text to image", "generative ai", "ai generator", "best ai"],
+        "words": {"ai", "tool", "tools", "gpt", "llm", "chatbot", "free", "generator",
+                  "best ai", "top ai", "artificial intelligence", "directory", "list"},
+        "phrases": ["ai tools", "free ai", "best ai tools", "generative ai", "ai generator",
+                    "best ai", "list of ai", "top ai tools", "ai apps"],
     },
     "coding": {
         "words": {"python", "javascript", "java", "typescript", "code", "coding", "programming",
@@ -541,9 +780,16 @@ def _detect_topic(query: str) -> str:
     if best_score == 0:
         return "general"
 
-    # Priority: ai_tools and coding are more specific, so they win ties
-    for topic in ["ai_tools", "medical", "legal", "research", "news", "business", "coding"]:
-        if scores[topic] == best_score:
+    # Specific AI sub-topics win as long as they have any phrase OR 2+ word hits.
+    # This lets "AI tools for music generation" -> ai_music even though "ai tools"
+    # phrase boosts the generic ai_tools score.
+    for topic in ["ai_music", "ai_video", "ai_writing", "ai_image"]:
+        if scores.get(topic, 0) >= 2:
+            return topic
+
+    # Standard priority for remaining topics
+    for topic in ["medical", "legal", "research", "news", "business", "coding", "ai_tools"]:
+        if scores.get(topic, 0) == best_score:
             return topic
 
     return "general"
@@ -559,7 +805,16 @@ def get_demo_results(query: str, n: int = 10) -> list[dict]:
     primary = list(TOPIC_CORPORA.get(topic, TOPIC_CORPORA["general"]))
 
     # Add 2-3 results from a secondary topic for re-ranking variety
-    secondary_topic = "general" if topic != "general" else "coding"
+    # For AI sub-topics, mix in the generic ai_tools corpus; otherwise use general
+    ai_subtopics = {"ai_music", "ai_image", "ai_video", "ai_writing"}
+    if topic in ai_subtopics:
+        secondary_topic = "ai_tools"
+    elif topic == "ai_tools":
+        secondary_topic = "ai_image"
+    elif topic == "general":
+        secondary_topic = "coding"
+    else:
+        secondary_topic = "general"
     secondary = random.sample(TOPIC_CORPORA[secondary_topic], min(3, len(TOPIC_CORPORA[secondary_topic])))
 
     pool = primary + secondary
